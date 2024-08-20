@@ -1,0 +1,30 @@
+* {
+  font-family: Basel, sans-serif;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: Basel;
+  font-weight: 535;
+  font-style: normal;
+  font-display: block;
+  src:
+    url("/fonts/Basel-Grotesk-Medium.woff2") format("woff2"),
+    url("/fonts/Basel-Grotesk-Medium.woff") format("woff");
+}
+
+@font-face {
+  font-family: Basel;
+  font-weight: 485;
+  font-style: normal;
+  font-display: block;
+  src:
+    url("/fonts/Basel-Grotesk-Book.woff2") format("woff2"),
+    url("/fonts/Basel-Grotesk-Book.woff") format("woff");
+}
+
+@supports (font-variation-settings: normal) {
+  * {
+    font-family: Basel, sans-serif;
+  }
+}
