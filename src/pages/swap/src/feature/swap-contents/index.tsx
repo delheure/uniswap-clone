@@ -54,6 +54,10 @@ const SwapContents = () => {
     return 0;
   };
 
+  const handleMore = () => {
+    setIsOpen(!isOpen);
+  };
+
   // sellAmount 변경 시 buyAmount 계산
   useEffect(() => {
     if (!!sellAmount) {
@@ -74,9 +78,12 @@ const SwapContents = () => {
     }
   }, [buyAmount, buyToken, sellToken]);
 
-  const handleMore = () => {
-    setIsOpen(!isOpen);
-  };
+  // 동일한 토큰 선택된 경우, 토큰 선택 버튼으로 변경
+  useEffect(() => {
+    if (sellToken === buyToken) {
+      setBuyToken(null);
+    }
+  }, [sellToken, buyToken]);
 
   return (
     <div>
