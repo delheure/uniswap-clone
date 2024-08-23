@@ -12,6 +12,7 @@ export const TabUnit = styled.button<{ active?: boolean }>`
   color: rgb(125, 125, 125);
   font-size: 16px;
   font-weight: 485;
+  text-transform: capitalize;
   transition-duration: 125ms;
   transition-timing-function: ease-in-out;
   transition-property: opacity, color, background-color;
