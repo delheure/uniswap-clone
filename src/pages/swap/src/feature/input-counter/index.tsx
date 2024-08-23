@@ -3,7 +3,7 @@ import {
   AmountUnit,
   CurrencyUnit,
   InputWrapper,
-  SelectedTokenUnit,
+  SelectedTokenBox,
   TitleUnit,
   TokensBox,
 } from "~/pages/swap/style";
@@ -12,10 +12,11 @@ import SelectTokenModal from "src/pages/swap/src/feature/select-token-modal";
 import useModal from "~/common/modal/useModal";
 import SvgIcon from "~/common/svg-icon";
 import DropdownIcon from "~/assets/ico/icon_dropdown.svg";
+import DropdownIconWhite from "~/assets/ico/icon_dropdown_white.svg";
 
 interface InputCounterProps {
   title?: string;
-  selectedToken: Tokens;
+  selectedToken: Tokens | null;
   onTokenChange: (token: Tokens) => void;
   amount: number;
   onAmountChange: (amount: number) => void;
@@ -30,12 +31,17 @@ const InputCounter = ({
 }: InputCounterProps) => {
   const { openModal, closeModal } = useModal();
   const [totalCurrency, setTotalCurrency] = useState("0");
+
   // 선택된 토큰에 따른 계산
   const calcCurrency = () => {
+    // 선택된 토큰이 없을 때 반환
+    if (!selectedToken) {
+      return "0";
+    }
     const sellRate = tokenRates[selectedToken];
     const calcTotalCurrency = sellRate * amount ?? 0;
 
-    // 특정 임계점 이후 단위 변환
+    // 이특정 임계점 이후 단위 변환
     if (calcTotalCurrency >= 1e12) {
       return `${(calcTotalCurrency / 1e12).toFixed(2)}T`;
     } else if (calcTotalCurrency >= 1e9) {
@@ -85,12 +91,18 @@ const InputCounter = ({
           value={amount}
           onChange={(e) => onAmountChange(+e.target.value)}
         />
-        {selectedTokenData && (
-          <SelectedTokenUnit onClick={handleSelectToken}>
-            <img src={selectedTokenData.icon} alt={selectedToken} />
-            {selectedToken}
+        {selectedTokenData ? (
+          <SelectedTokenBox onClick={handleSelectToken}>
+            <img src={selectedTokenData.icon} />
+            <span>{selectedToken}</span>
+
             <SvgIcon icon={<DropdownIcon />} size={12} />
-          </SelectedTokenUnit>
+          </SelectedTokenBox>
+        ) : (
+          <SelectedTokenBox onClick={handleSelectToken} isSelected={true}>
+            <span>Select token</span>
+            <SvgIcon icon={<DropdownIconWhite />} size={12} />
+          </SelectedTokenBox>
         )}
       </TokensBox>
       {/*토큰 선택 && 인풋 값 입력되면 노출 */}

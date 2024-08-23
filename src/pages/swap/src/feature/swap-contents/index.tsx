@@ -12,15 +12,12 @@ import {
   GasFeeField,
   MoreBox,
 } from "~/pages/swap/src/feature/swap-contents/style";
-import useModal from "~/common/modal/useModal";
 
 const SwapContents = () => {
-  const { openModal } = useModal();
-  const [sellToken, setSellToken] = useState<Tokens>(Tokens.ETH);
-  const [buyToken, setBuyToken] = useState<Tokens>(Tokens.USDC);
+  const [sellToken, setSellToken] = useState<Tokens | null>(Tokens.ETH);
+  const [buyToken, setBuyToken] = useState<Tokens | null>(null);
   const [sellAmount, setSellAmount] = useState(0);
   const [buyAmount, setBuyAmount] = useState(0);
-  const [isPriceReversed, setIsPriceReversed] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   // 토큰 교환
@@ -33,27 +30,33 @@ const SwapContents = () => {
 
   // sell 입력 값에 따른 buy 값 계산
   const calcSellAmount = (
-    buyToken: Tokens,
+    buyToken: Tokens | null,
     sellAmount: number,
-    sellToken: Tokens,
+    sellToken: Tokens | null,
   ) => {
-    const sellRate = exchangeRates[sellToken][buyToken];
-    return sellAmount * sellRate;
+    if (buyToken && sellToken) {
+      const sellRate = exchangeRates[sellToken][buyToken];
+      return sellAmount * sellRate;
+    }
+    return 0;
   };
 
   // buy 입력 값에 따른 sell 값 계산
   const calcBuyAmount = (
-    sellToken: Tokens,
+    sellToken: Tokens | null,
     buyAmount: number,
-    buyToken: Tokens,
+    buyToken: Tokens | null,
   ) => {
-    const buyRate = exchangeRates[buyToken][sellToken];
-    return buyAmount * buyRate;
+    if (sellToken && buyToken) {
+      const buyRate = exchangeRates[buyToken][sellToken];
+      return buyAmount * buyRate;
+    }
+    return 0;
   };
 
   // sellAmount 변경 시 buyAmount 계산
   useEffect(() => {
-    if (sellAmount > 0) {
+    if (!!sellAmount) {
       const newBuyAmount = calcSellAmount(buyToken, sellAmount, sellToken);
       if (newBuyAmount !== buyAmount) {
         setBuyAmount(newBuyAmount);
@@ -63,7 +66,7 @@ const SwapContents = () => {
 
   // buyAmount 변경 시 sellAmount 계산
   useEffect(() => {
-    if (buyAmount > 0) {
+    if (!!buyAmount) {
       const newSellAmount = calcBuyAmount(sellToken, buyAmount, buyToken);
       if (newSellAmount !== sellAmount) {
         setSellAmount(newSellAmount);

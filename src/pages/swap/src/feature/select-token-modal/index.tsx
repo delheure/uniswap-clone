@@ -17,7 +17,7 @@ import { Tokens } from "~/types/tokens";
 
 interface SelectTokenModalProps {
   tokenList: { name: Tokens; icon: string }[];
-  selectedToken: Tokens;
+  selectedToken: Tokens | null;
   onTokenSelect: (token: Tokens) => void;
 }
 
