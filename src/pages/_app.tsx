@@ -3,25 +3,40 @@ import "~/styles/fonts.css";
 import type { AppProps } from "next/app";
 import styled from "styled-components";
 import { GlobalStyle } from "~/styles/style";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import Header from "~/components/header";
+import Header from "src/common/header";
+import Modal from "~/common/modal";
+import { useEffect, useMemo, useState } from "react";
+import CombineProviders from "~/provider/combine-providers";
+import RecoilProvider from "~/provider/recoil-provider";
 
-export default function App({ Component, pageProps }: AppProps) {
-  const queryClient = new QueryClient();
+const MyApp = ({ Component, pageProps: { ...pageProps } }: AppProps) => {
+  const [isMounted, setIsMounted] = useState(false);
+
+  const Provider = useMemo(() => CombineProviders([[RecoilProvider]]), []);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <IndexWrapper>
-        <GlobalStyle />
-        <Header />
-        <Main>
-          <Component {...pageProps} />
-        </Main>
-      </IndexWrapper>
-      )
-    </QueryClientProvider>
+    <>
+      {isMounted && (
+        <Provider>
+          <GlobalStyle />
+          <IndexWrapper>
+            <Header />
+            <Main>
+              <Component {...pageProps} />
+            </Main>
+          </IndexWrapper>
+          <Modal />
+        </Provider>
+      )}
+    </>
   );
-}
+};
+
+export default MyApp;
 
 const IndexWrapper = styled.div`
   position: relative;
@@ -39,8 +54,7 @@ const Main = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  padding: 0 28px;
-  overflow-y: auto;
-  overflow-x: hidden;
+  width: 100vw;
+  max-width: 1200px;
+  min-height: 100%;
 `;
