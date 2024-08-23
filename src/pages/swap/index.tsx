@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import SwapTab from "src/common/swap-tab";
 import SwapContents from "~/pages/swap/src/feature/swap-contents";
 import useModal from "~/common/modal/useModal";
+import { ButtonBox, SwapWrapper, TabField } from "~/pages/swap/style";
+import SvgIcon from "~/common/svg-icon";
+import SettingIcon from "~/assets/ico/icon_setting.svg";
 
 const SwapPage = () => {
   const { openModal } = useModal();
@@ -20,19 +22,20 @@ const SwapPage = () => {
 
   return (
     <SwapWrapper>
-      <SwapTab selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
+      <TabField>
+        <SwapTab selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
+        <ButtonBox>
+          <SvgIcon
+            icon={<SettingIcon />}
+            size={24}
+            color="rgb(125, 125, 125)"
+          />
+        </ButtonBox>
+      </TabField>
+
       {renderContent()}
     </SwapWrapper>
   );
 };
 
 export default SwapPage;
-
-export const SwapWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 68px 8px 0;
-  max-width: 480px;
-  width: 100%;
-`;

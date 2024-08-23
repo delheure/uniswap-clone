@@ -1,4 +1,11 @@
 import React, { useEffect, useState } from "react";
+
+import { TokenList, tokenRates, Tokens } from "~/types/tokens";
+import SelectTokenModal from "src/pages/swap/src/feature/select-token-modal";
+import useModal from "~/common/modal/useModal";
+import SvgIcon from "~/common/svg-icon";
+import DropdownIcon from "~/assets/ico/icon_dropdown.svg";
+import DropdownIconWhite from "~/assets/ico/icon_dropdown_white.svg";
 import {
   AmountUnit,
   CurrencyUnit,
@@ -6,13 +13,7 @@ import {
   SelectedTokenBox,
   TitleUnit,
   TokensBox,
-} from "~/pages/swap/style";
-import { TokenList, tokenRates, Tokens } from "~/types/tokens";
-import SelectTokenModal from "src/pages/swap/src/feature/select-token-modal";
-import useModal from "~/common/modal/useModal";
-import SvgIcon from "~/common/svg-icon";
-import DropdownIcon from "~/assets/ico/icon_dropdown.svg";
-import DropdownIconWhite from "~/assets/ico/icon_dropdown_white.svg";
+} from "~/pages/swap/src/feature/input-counter/style";
 
 interface InputCounterProps {
   title?: string;
