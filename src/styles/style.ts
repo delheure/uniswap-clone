@@ -5,6 +5,7 @@ export const GlobalStyle = createGlobalStyle`
     --primary-color: #fc72ff;
     --default-background: #ffffff;
     --default-text: #222222;
+    --gray-text: #7d7d7d;
 
     --unselected: #bdbdbd;
     --selected: #363062;
@@ -36,7 +37,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   * {
-    font-font: Basel, sans-serif;
+    font-family: Basel, sans-serif;
     box-sizing: border-box;
   }
 
@@ -58,5 +59,10 @@ export const GlobalStyle = createGlobalStyle`
 
   button {
     user-select: none;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
   }
 `;
