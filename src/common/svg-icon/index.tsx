@@ -1,18 +1,13 @@
-import { HTMLAttributes, ReactNode } from 'react'
-import { SvgIconWrapper } from '~/common/svg-icon/style'
+import { HTMLAttributes, ReactNode } from "react";
+import { SvgIconWrapper } from "~/common/svg-icon/style";
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
-  icon: ReactNode
-  size?: number
-  color?: string
+  icon: ReactNode;
+  size?: number;
+  color?: string;
 }
 
-const SvgIcon = ({
-  size = 24,
-  color = 'var(--unselected)',
-  icon,
-  onClick
-}: Props) => {
+const SvgIcon = ({ size = 24, color = "", icon, onClick }: Props) => {
   return (
     <SvgIconWrapper
       fill={color}
@@ -22,7 +17,7 @@ const SvgIcon = ({
     >
       {icon}
     </SvgIconWrapper>
-  )
-}
+  );
+};
 
-export default SvgIcon
+export default SvgIcon;
