@@ -7,8 +7,7 @@ export const PriceBox = styled.div``;
 export const GasFeeField = styled.div<{ isOpen?: boolean }>`
   display: flex;
   justify-content: flex-end;
-  padding: 12px 16px;
-  color: rgb(125, 125, 125);
+  color: var(--text-gray);
   font-size: 14px;
 `;
 
@@ -27,8 +26,11 @@ export const MoreBox = styled.div`
 `;
 
 export const ButtonBox = styled.div<{ isOpen?: boolean }>`
-  transition: transform 0.1s linear;
   cursor: pointer;
+
+  svg {
+    transition: transform 0.1s linear;
+  }
 
   ${({ isOpen }) =>
     isOpen &&
@@ -37,4 +39,21 @@ export const ButtonBox = styled.div<{ isOpen?: boolean }>`
         transform: rotate(180deg);
       }
     `};
+`;
+
+export const InfoField = styled.div`
+  padding: 12px 16px;
+  font-size: 14px;
+`;
+
+export const InfoTitleBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const RateBox = styled.div``;
+
+export const CurrencyUnit = styled.span`
+  color: var(--text-gray);
 `;
