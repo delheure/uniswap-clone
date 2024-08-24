@@ -84,3 +84,37 @@ export const TokenItem = styled.button<{ active: boolean }>`
       background-color: rgba(34, 34, 34, 0.07);
     `};
 `;
+
+export const SearchBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px;
+`;
+
+export const IconUnit = styled.div`
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  min-width: 36px;
+  height: 36px;
+  border: none;
+  cursor: pointer;
+  background: var(--gray-background);
+  border-radius: 12px;
+  color: var(--text-gray);
+  transition: 250ms;
+
+  &:hover {
+    background-color: var(--hover-gray);
+  }
+
+  img {
+    width: 20px;
+    height: 20px;
+    border-right: 6px;
+  }
+`;

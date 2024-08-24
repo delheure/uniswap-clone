@@ -7,17 +7,25 @@ import {
   SearchInputWrapper,
 } from "~/common/header/search-input/style";
 
-const SearchInput = () => {
+export interface SearchInputProps {
+  type?: "header" | "modal";
+  placeHolder?: string;
+}
+
+const SearchInput = ({
+  type = "header",
+  placeHolder = "Search tokens and NFT collections",
+}: SearchInputProps) => {
   return (
-    <SearchInputWrapper>
+    <SearchInputWrapper type={type}>
       <SvgIcon icon={<SearchIcon />} size={20} />
       <SearchInputBox
-        placeholder="Search tokens and NFT collections"
+        placeholder={placeHolder}
         autoComplete="off"
         minLength={1}
         maxLength={79}
       />
-      <NFTSearchBox>/</NFTSearchBox>
+      {type === "header" && <NFTSearchBox>/</NFTSearchBox>}
     </SearchInputWrapper>
   );
 };

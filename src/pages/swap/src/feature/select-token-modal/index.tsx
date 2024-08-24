@@ -7,13 +7,17 @@ import {
   ButtonBox,
   ContentsBox,
   DimmedLayerUnit,
+  IconUnit,
   ModalContentField,
   ModalLayoutWrapper,
+  SearchBox,
   TitleBox,
   TitleUnit,
   TokenItem,
 } from "~/pages/swap/src/feature/select-token-modal/style";
 import { Tokens } from "~/types/tokens";
+import SearchInput from "~/common/header/search-input";
+import WETHIcon from "~/assets/tokens/tokens_weth.png";
 
 interface SelectTokenModalProps {
   tokenList: { name: Tokens; icon: string }[];
@@ -44,6 +48,15 @@ const SelectTokenModal = ({
             <SvgIcon icon={<CloseIcon />} size={24} />
           </ButtonBox>
         </TitleBox>
+        <SearchBox>
+          <SearchInput
+            type="modal"
+            placeHolder="Search name or paste address"
+          />
+          <IconUnit>
+            <img src={WETHIcon.src} alt="Ethereum Nerwork" />
+          </IconUnit>
+        </SearchBox>
         <ContentsBox>
           {tokenList.map((item) => (
             <TokenItem

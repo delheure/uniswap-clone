@@ -1,6 +1,17 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import { SearchInputProps } from "~/common/header/search-input/index";
 
-export const SearchInputWrapper = styled.div`
+const TypeSet = {
+  header: css``,
+  modal: css`
+    padding: 16px;
+    border-radius: 12px;
+  `,
+};
+
+export const SearchInputWrapper = styled.div<{
+  type?: SearchInputProps["type"];
+}>`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -13,6 +24,8 @@ export const SearchInputWrapper = styled.div`
   background-color: var(--gray-background);
   border: 1px solid rgba(34, 34, 34, 0.07);
   border-radius: 20px;
+
+  ${({ type }) => type && TypeSet[type]};
 `;
 
 export const SearchInputBox = styled.input`
