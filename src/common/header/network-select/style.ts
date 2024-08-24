@@ -13,11 +13,11 @@ export const NetworkBox = styled.button`
   cursor: pointer;
   border-radius: 50%;
   background-color: transparent;
-  color: rgb(125, 125, 125);
+  color: var(--text-gray);
   transition: 250ms;
 
   &:hover {
-    background-color: rgb(245, 245, 245);
+    background-color: var(--hover-gray);
   }
 
   img {

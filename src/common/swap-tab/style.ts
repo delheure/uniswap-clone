@@ -10,7 +10,7 @@ export const TabUnit = styled.button<{ active?: boolean }>`
   gap: 4px;
   padding: 8px 12px;
   border-radius: 20px;
-  color: rgb(125, 125, 125);
+  color: var(--text-gray);
   font-size: 16px;
   font-weight: 485;
   text-transform: capitalize;
@@ -23,7 +23,7 @@ export const TabUnit = styled.button<{ active?: boolean }>`
   ${({ active }) =>
     active &&
     css`
-      color: rgb(34, 34, 34);
+      color: var(--default-text);
       background-color: rgba(34, 34, 34, 0.07);
     `};
 }

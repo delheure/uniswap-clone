@@ -23,8 +23,8 @@ export const ConnectButtonUnit = styled.button<{
   padding: 16px;
   margin: 4px 0 0 0;
   border-radius: 16px;
-  background-color: rgb(255, 239, 255);
-  color: rgb(252, 114, 255);
+  background-color: var(--primary-button);
+  color: var(--primary-color);
   font-size: 20px;
   font-weight: 535;
   text-transform: capitalize;

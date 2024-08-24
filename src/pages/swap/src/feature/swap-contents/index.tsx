@@ -151,7 +151,7 @@ const SwapContents = () => {
                   <GasFeeBox>
                     <SvgIcon
                       icon={<GasFeeIcon />}
-                      color="rgb(206, 206, 206)"
+                      color="var(--gray-icon)"
                       size={16}
                     />
                     $1.111

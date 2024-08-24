@@ -22,5 +22,5 @@ export const noneDraggable = css`
 export const transition = css`
   transition-duration: 125ms;
   transition-timing-function: ease-in-out;
-  transition-property: opacity, color, background-color;
+  transition-property: all;
 `;

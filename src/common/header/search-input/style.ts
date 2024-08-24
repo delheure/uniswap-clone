@@ -10,7 +10,7 @@ export const SearchInputWrapper = styled.div`
   width: 100vw;
   height: 40px;
   padding: 8px 16px;
-  background-color: rgb(249, 249, 249);
+  background-color: var(--gray-background);
   border: 1px solid rgba(34, 34, 34, 0.07);
   border-radius: 20px;
 `;
@@ -34,7 +34,7 @@ export const NFTSearchBox = styled.button`
   padding: 0px 8px;
   width: 20px;
   height: 20px;
-  color: rgb(125, 125, 125);
+  color: var(--text-gray);
   font-size: 12px;
   font-weight: 535;
   line-height: 16px;

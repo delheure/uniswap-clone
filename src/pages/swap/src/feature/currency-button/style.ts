@@ -8,7 +8,7 @@ export const CurrencyButtonUnit = styled.button`
   height: 40px;
   width: 40px;
   margin: -18px auto;
-  background-color: rgb(249, 249, 249);
+  background-color: var(--gray-background);
   border: 4px solid var(--default-background);
   border-radius: 12px;
   z-index: 2;

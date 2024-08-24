@@ -64,7 +64,7 @@ export const TokenItem = styled.button<{ active: boolean }>`
   padding: 5px 12px 5px 6px;
   font-size: 16px;
   font-weight: 535;
-  color: rgb(34, 34, 34);
+  color: var(--default-text);
   border: 1px solid rgba(34, 34, 34, 0.07);
   border-radius: 18px;
 

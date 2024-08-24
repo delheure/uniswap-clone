@@ -21,11 +21,7 @@ const SwapPage = () => {
       <TabField>
         <SwapTab selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
         <ButtonBox>
-          <SvgIcon
-            icon={<SettingIcon />}
-            size={24}
-            color="rgb(125, 125, 125)"
-          />
+          <SvgIcon icon={<SettingIcon />} size={24} color="var(--gray-text)" />
         </ButtonBox>
       </TabField>
 

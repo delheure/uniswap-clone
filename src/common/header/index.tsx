@@ -18,9 +18,9 @@ const Header = () => {
     <HeaderWrapper>
       <HeaderBox>
         <LogoBox>
-          <SvgIcon icon={<LogoIcon />} size={22} color="#FC74FE" />
+          <SvgIcon icon={<LogoIcon />} size={22} color="var(--primary-logo)" />
           <LogoTitleUnit>Uniswap</LogoTitleUnit>
-          <SvgIcon icon={<ArrowIcon />} size={12} color="rgb(125, 125, 125)" />
+          <SvgIcon icon={<ArrowIcon />} size={12} color="var(--gray-text)" />
         </LogoBox>
         <Menu />
       </HeaderBox>

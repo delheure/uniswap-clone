@@ -8,9 +8,9 @@ export const InputWrapper = styled.div`
   gap: 4px;
   padding: 16px;
   min-height: 120px;
-  background-color: rgb(249, 249, 249);
+  background-color: var(--gray-background);
   border-radius: 16px;
-  color: rgb(125, 125, 125);
+  color: var(--text-gray);
   font-size: 14px;
   font-weight: 500;
   line-height: 20px;
@@ -37,7 +37,7 @@ export const AmountUnit = styled.input`
   background: transparent;
   border: 0;
   font-size: 36px;
-  color: rgb(34, 34, 34);
+  color: var(--default-text);
   outline: 0;
   transition: opacity 250ms ease-in-out;
   ${ellipsis};
@@ -58,7 +58,7 @@ export const SelectedTokenBox = styled.button<{ isSelected?: boolean }>`
   margin-left: 12px;
   height: 36px;
   box-shadow: rgba(34, 34, 34, 0.04) 0px 0px 10px 0px;
-  color: rgb(34, 34, 34);
+  color: var(--default-text);
 
   border: 1px solid rgba(34, 34, 34, 0.07);
   border-radius: 18px;
@@ -78,9 +78,9 @@ export const SelectedTokenBox = styled.button<{ isSelected?: boolean }>`
     css`
       padding: 6px 6px 6px 8px;
 
-      color: #ffffff;
-      background-color: rgb(252, 114, 255);
-      border-color: rgb(252, 114, 255);
+      color: var(--default-background);
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
     `};
 
   img {
@@ -91,6 +91,6 @@ export const SelectedTokenBox = styled.button<{ isSelected?: boolean }>`
 
 export const CurrencyUnit = styled.span`
   margin: 4px 0 0 0;
-  color: rgb(125, 125, 125);
+  color: var(--text-gray);
   font-size: 14px;
 `;
