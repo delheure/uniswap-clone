@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import InputCounter from "~/pages/swap/src/feature/input-counter";
 import { exchangeRates, Tokens } from "~/types/tokens";
 import CurrencyButton from "src/pages/swap/src/feature/currency-button";
-import ConfirmButton from "src/pages/swap/src/feature/confirm-button";
+import ConnectButton from "src/pages/swap/src/feature/connect-button";
 import SvgIcon from "~/common/svg-icon";
 import ArrowIcon from "~/assets/ico/icon_arrow_down.svg";
 import GasFeeIcon from "~/assets/ico/icon_gasfee.svg";
@@ -103,7 +103,7 @@ const SwapContents = () => {
         amount={buyAmount}
         onAmountChange={setBuyAmount}
       />
-      <ConfirmButton text="Connect wallet" />
+      <ConnectButton text="Connect wallet" />
 
       <GasFeeField onClick={handleMore} isOpen={isOpen}>
         {isOpen && (
