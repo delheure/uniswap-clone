@@ -32,6 +32,8 @@ const InputCounter = ({
 }: InputCounterProps) => {
   const { openModal, closeModal } = useModal();
   const [totalCurrency, setTotalCurrency] = useState("0");
+  // 총합 USD 노출 조건
+  const totalUSD = amount > 0 && !!selectedToken;
 
   // 선택된 토큰에 따른 계산
   const calcCurrency = () => {
@@ -42,7 +44,7 @@ const InputCounter = ({
     const sellRate = tokenRates[selectedToken];
     const calcTotalCurrency = sellRate * amount ?? 0;
 
-    // 이특정 임계점 이후 단위 변환
+    // 특정 임계점 이후 단위 변환
     if (calcTotalCurrency >= 1e12) {
       return `${(calcTotalCurrency / 1e12).toFixed(2)}T`;
     } else if (calcTotalCurrency >= 1e9) {
@@ -65,6 +67,7 @@ const InputCounter = ({
     (token) => token.name === selectedToken,
   );
 
+  // 토큰 선택 모달
   const handleSelectToken = () => {
     openModal(
       <SelectTokenModal
@@ -75,8 +78,9 @@ const InputCounter = ({
     );
   };
 
+  // 선택된 토큰 * 총합 = USD로 환산
   useEffect(() => {
-    if (amount > 0 && !!selectedToken) {
+    if (!!totalUSD) {
       setTotalCurrency(calcCurrency());
     }
   }, [amount, selectedToken]);
@@ -106,8 +110,7 @@ const InputCounter = ({
           </SelectedTokenBox>
         )}
       </TokensBox>
-      {/*토큰 선택 && 인풋 값 입력되면 노출 */}
-      <CurrencyUnit>${totalCurrency ?? 0}</CurrencyUnit>
+      {totalUSD && <CurrencyUnit>${totalCurrency ?? 0}</CurrencyUnit>}
     </InputWrapper>
   );
 };
