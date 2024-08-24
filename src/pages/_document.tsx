@@ -11,7 +11,16 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head></Head>
+        <Head>
+          <title>
+            Buy, sell &amp; trade Ethereum and other top tokens on Uniswap
+          </title>
+          <link
+            rel="shortcut icon"
+            type="image/png"
+            href="/favicon/favicon.png"
+          />
+        </Head>
         <body>
           <Main />
           <NextScript />
