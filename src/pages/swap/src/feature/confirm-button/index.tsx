@@ -24,6 +24,6 @@ export const ConfirmButtonUnit = styled.button`
   font-weight: 535;
 
   &:hover {
-    background-color: rgb(255, 239, 255);
+    background-color: #f6e9fa;
   }
 `;

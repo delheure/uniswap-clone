@@ -49,7 +49,7 @@ export const AmountUnit = styled.input`
 
 export const SelectedTokenBox = styled.button<{ isSelected?: boolean }>`
   display: flex;
-  gap: 8px;
+  gap: 4px;
   justify-content: space-between;
   align-items: center;
   user-select: none;
@@ -59,8 +59,7 @@ export const SelectedTokenBox = styled.button<{ isSelected?: boolean }>`
   height: 36px;
   box-shadow: rgba(34, 34, 34, 0.04) 0px 0px 10px 0px;
   color: rgb(34, 34, 34);
-  font-size: 24px;
-  font-weight: 485;
+
   border: 1px solid rgba(34, 34, 34, 0.07);
   border-radius: 18px;
   background-color: var(--default-background);
@@ -70,6 +69,8 @@ export const SelectedTokenBox = styled.button<{ isSelected?: boolean }>`
 
   span {
     margin: 0 4px;
+    font-size: 20px;
+    font-weight: 535;
   }
 
   ${({ isSelected }) =>

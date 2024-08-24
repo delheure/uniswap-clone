@@ -1,5 +1,7 @@
 import styled, { css } from "styled-components";
 
+export const SwapContentsWrapper = styled.div``;
+
 export const PriceBox = styled.div``;
 
 export const GasFeeField = styled.div<{ isOpen?: boolean }>`

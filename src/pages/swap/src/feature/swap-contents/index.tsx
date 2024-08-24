@@ -11,6 +11,7 @@ import {
   GasFeeBox,
   GasFeeField,
   MoreBox,
+  SwapContentsWrapper,
 } from "~/pages/swap/src/feature/swap-contents/style";
 
 const SwapContents = () => {
@@ -86,7 +87,7 @@ const SwapContents = () => {
   }, [sellToken, buyToken]);
 
   return (
-    <div>
+    <SwapContentsWrapper>
       <InputCounter
         title="sell"
         selectedToken={sellToken}
@@ -105,8 +106,8 @@ const SwapContents = () => {
       <ConfirmButton text="Connect wallet" />
 
       <GasFeeField onClick={handleMore} isOpen={isOpen}>
-        <MoreBox>
-          {!isOpen && (
+        {isOpen && (
+          <MoreBox>
             <GasFeeBox>
               <SvgIcon
                 icon={<GasFeeIcon />}
@@ -115,15 +116,15 @@ const SwapContents = () => {
               />
               $1.111
             </GasFeeBox>
-          )}
 
-          <ButtonBox isOpen={isOpen}>
-            <SvgIcon icon={<ArrowIcon />} size={24} />
-          </ButtonBox>
-        </MoreBox>
+            <ButtonBox isOpen={isOpen}>
+              <SvgIcon icon={<ArrowIcon />} size={24} />
+            </ButtonBox>
+          </MoreBox>
+        )}
         {isOpen && <></>}
       </GasFeeField>
-    </div>
+    </SwapContentsWrapper>
   );
 };
 
