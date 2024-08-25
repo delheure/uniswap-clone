@@ -6,7 +6,7 @@ export const GlobalStyle = createGlobalStyle`
     --primary-color: #fc72ff;
     --default-background: #ffffff;
     --default-text: #222222;
-    --gray-text: #7d7d7d;
+    --text-gray: #7d7d7d;
     --hover-gray: #f5f5f5;
     --gray-background: #f9f9f9;
     --gray-icon: #cecece;
