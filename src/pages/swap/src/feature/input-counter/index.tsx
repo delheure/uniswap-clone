@@ -110,7 +110,7 @@ const InputCounter = ({
           </SelectedTokenBox>
         )}
       </TokensBox>
-      {totalUSD && <CurrencyUnit>${totalCurrency ?? 0}</CurrencyUnit>}
+      {totalUSD && <CurrencyUnit>${totalCurrency ?? ""}</CurrencyUnit>}
     </InputWrapper>
   );
 };
