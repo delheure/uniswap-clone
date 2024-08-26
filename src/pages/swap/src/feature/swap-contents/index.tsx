@@ -141,7 +141,9 @@ const SwapContents = () => {
             <RateBox onClick={handleRateToggle}>
               {displayRate}&nbsp;
               {currency && (
-                <CurrencyUnit>(${currency.toLocaleString() ?? 0})</CurrencyUnit>
+                <CurrencyUnit>
+                  (${currency.toLocaleString() ?? ""})
+                </CurrencyUnit>
               )}
             </RateBox>
 
