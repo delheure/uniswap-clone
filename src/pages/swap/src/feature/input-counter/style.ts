@@ -93,4 +93,5 @@ export const CurrencyUnit = styled.span`
   margin: 4px 0 0 0;
   color: var(--text-gray);
   font-size: 14px;
+  cursor: pointer;
 `;
