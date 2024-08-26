@@ -1,9 +1,10 @@
 import React from "react";
 import {
-    HeaderBox,
-    HeaderWrapper,
-    LogoBox,
-    LogoTitleUnit, IconBox,
+  HeaderBox,
+  HeaderWrapper,
+  IconBox,
+  LogoBox,
+  LogoTitleUnit,
 } from "~/common/header/style";
 import Menu from "~/common/header/menu";
 import SvgIcon from "~/common/svg-icon";
@@ -21,7 +22,7 @@ const Header = () => {
         <LogoBox>
           <SvgIcon icon={<LogoIcon />} size={22} color="var(--primary-logo)" />
           <LogoTitleUnit>Uniswap</LogoTitleUnit>
-          <SvgIcon icon={<ArrowIcon />} size={12} color="var(--gray-text)" />
+          <SvgIcon icon={<ArrowIcon />} size={12} color="var(--text-gray)" />
         </LogoBox>
         <Menu />
       </HeaderBox>
@@ -29,12 +30,12 @@ const Header = () => {
       <SearchInput />
 
       <HeaderBox>
-          <IconBox>
-              <SvgIcon icon={<LanguageIcon />} size={20} />
-          </IconBox>
-          <IconBox>
-              <img src={WETHIcon.src} alt="Ethereum Nerwork" />
-          </IconBox>
+        <IconBox>
+          <SvgIcon icon={<LanguageIcon />} size={20} />
+        </IconBox>
+        <IconBox>
+          <img src={WETHIcon.src} alt="Ethereum Nerwork" />
+        </IconBox>
         <ConnectButton type="header" text="connect" />
       </HeaderBox>
     </HeaderWrapper>

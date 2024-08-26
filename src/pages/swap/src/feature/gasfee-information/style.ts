@@ -32,5 +32,5 @@ export const AmountsUnit = styled.span<{ primary?: boolean }>`
   align-items: center;
   gap: 8px;
   color: ${({ primary }) =>
-    primary ? "var(--gray-text)" : "var(--text-default)"};
+    primary ? "var(--text-gray)" : "var(--text-default)"};
 `;

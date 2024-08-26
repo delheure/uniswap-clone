@@ -18,7 +18,7 @@ export const InputWrapper = styled.div`
 
 export const TitleUnit = styled.span`
   font-size: 14px;
-  color: var(--gray-text);
+  color: var(--text-gray);
   text-transform: capitalize;
 `;
 

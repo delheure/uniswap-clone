@@ -23,7 +23,7 @@ export const NavMenuItem = styled.div`
 export const NavMenuText = styled.div<{ active?: boolean }>`
   font-size: 18px;
   font-weight: 485;
-  color: var(--gray-text);
+  color: var(--text-gray);
   cursor: pointer;
 
   &:hover {
