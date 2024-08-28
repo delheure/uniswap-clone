@@ -14,7 +14,7 @@ import {
   InfoField,
   InfoTitleBox,
   MoreBox,
-  RateBox,
+  TradePriceBox,
   SwapContentsWrapper,
 } from "~/pages/swap/src/feature/swap-contents/style";
 import GasfeeInformation from "~/pages/swap/src/feature/gasfee-information";
@@ -142,14 +142,14 @@ const SwapContents = () => {
       {isAllSelected && (
         <InfoField>
           <InfoTitleBox>
-            <RateBox onClick={handleRateToggle}>
+            <TradePriceBox onClick={handleRateToggle}>
               {displayRate}&nbsp;
               {currency && (
                 <CurrencyUnit>
                   (${currency.toLocaleString() ?? ""})
                 </CurrencyUnit>
               )}
-            </RateBox>
+            </TradePriceBox>
 
             <GasFeeField onClick={handleMore} isOpen={isOpen}>
               <MoreBox>

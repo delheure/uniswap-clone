@@ -52,7 +52,9 @@ export const InfoTitleBox = styled.div`
   align-items: center;
 `;
 
-export const RateBox = styled.div``;
+export const TradePriceBox = styled.div`
+  cursor: pointer;
+`;
 
 export const CurrencyUnit = styled.span`
   color: var(--text-gray);
