@@ -26,7 +26,11 @@ const SwapContents = () => {
   const [buyAmount, setBuyAmount] = useState(0);
   const [isRateReversed, setIsRateReversed] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const isAllSelected = sellToken && buyToken && sellAmount && buyAmount;
+  const isAllSelected =
+    sellToken !== null &&
+    buyToken !== null &&
+    sellAmount >= 0 &&
+    buyAmount >= 0;
 
   // 토큰 교환
   const handleChange = () => {
