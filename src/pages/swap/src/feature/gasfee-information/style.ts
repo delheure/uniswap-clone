@@ -34,3 +34,14 @@ export const AmountsUnit = styled.span<{ primary?: boolean }>`
   color: ${({ primary }) =>
     primary ? "var(--text-gray)" : "var(--text-default)"};
 `;
+
+export const AutoUnit = styled.span`
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  height: 20px;
+  padding: 0px 6px;
+  background: rgba(34, 34, 34, 0.07);
+  border-radius: 8px;
+  color: var(--text-gray);
+`;

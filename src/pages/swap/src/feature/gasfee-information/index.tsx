@@ -1,11 +1,11 @@
 import React from "react";
 import {
   AmountsUnit,
+  AutoUnit,
   GasfeeInformationWrapper,
   InfoDetailBox,
   TitleUnit,
 } from "~/pages/swap/src/feature/gasfee-information/style";
-import styled from "styled-components";
 import GasFeeIcon from "~/assets/ico/icon_gasfee.svg";
 import SvgIcon from "~/common/svg-icon";
 
@@ -53,14 +53,3 @@ const GasfeeInformation = ({ isOpen }: GasFeeInformationProps) => {
 };
 
 export default GasfeeInformation;
-
-export const AutoUnit = styled.span`
-  display: flex;
-  align-items: center;
-  width: fit-content;
-  height: 20px;
-  padding: 0px 6px;
-  background: rgba(34, 34, 34, 0.07);
-  border-radius: 8px;
-  color: var(--text-gray);
-`;
