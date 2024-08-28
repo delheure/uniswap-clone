@@ -39,7 +39,7 @@ const GasfeeInformation = ({ isOpen }: GasFeeInformationProps) => {
       </InfoDetailBox>
       <InfoDetailBox>
         <TitleUnit>Network cost</TitleUnit>
-        <AmountsUnit primary={true}>
+        <AmountsUnit primary={"primary"}>
           <SvgIcon icon={<GasFeeIcon />} size={16} color="var(--gray-icon)" />
           $0.48
         </AmountsUnit>

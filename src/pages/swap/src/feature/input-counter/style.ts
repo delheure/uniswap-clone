@@ -77,7 +77,6 @@ export const SelectedTokenBox = styled.button<{ isSelected?: boolean }>`
     isSelected &&
     css`
       padding: 6px 6px 6px 8px;
-
       color: var(--default-background);
       background-color: var(--primary-color);
       border-color: var(--primary-color);

@@ -27,12 +27,12 @@ export const TitleUnit = styled.div`
   cursor: help;
 `;
 
-export const AmountsUnit = styled.span<{ primary?: boolean }>`
+export const AmountsUnit = styled.span<{ primary?: string }>`
   display: flex;
   align-items: center;
   gap: 8px;
   color: ${({ primary }) =>
-    primary ? "var(--text-gray)" : "var(--text-default)"};
+    primary === "primary" ? "var(--text-gray)" : "var(--text-default)"};
 `;
 
 export const AutoUnit = styled.span`
