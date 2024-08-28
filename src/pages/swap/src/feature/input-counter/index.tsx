@@ -27,10 +27,11 @@ const InputCounter = ({
   title = "sell",
   selectedToken,
   onTokenChange,
-  amount = "0",
+  amount: initialAmount,
   onAmountChange,
 }: InputCounterProps) => {
   const { openModal, closeModal } = useModal();
+  const [amount, setAmount] = useState(initialAmount);
   const [totalCurrency, setTotalCurrency] = useState("0");
   // 총합 USD 노출 조건
   const totalUSD = parseFloat(amount) > 0 && !!selectedToken;
@@ -39,10 +40,11 @@ const InputCounter = ({
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     let updatedValue = e.target.value;
 
-    const regex = /^[0-9]*\.?[0-9]{0,3}$/;
+    const regex = /^\d*\.?\d{0,6}$/;
 
     if (regex.test(updatedValue)) {
       onAmountChange(updatedValue);
+      setAmount?.(updatedValue);
     }
   };
 
@@ -95,11 +97,17 @@ const InputCounter = ({
       setTotalCurrency(calcCurrency());
     }
   }, [amount, selectedToken]);
+
+  useEffect(() => {
+    setAmount(initialAmount);
+  }, [initialAmount]);
+
   return (
     <InputWrapper>
       <TitleUnit>{title}</TitleUnit>
       <TokensBox>
         <AmountUnit
+          type="text"
           placeholder="0"
           autoComplete="off"
           minLength={1}

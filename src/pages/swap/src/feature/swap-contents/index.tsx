@@ -14,23 +14,25 @@ import {
   InfoField,
   InfoTitleBox,
   MoreBox,
-  TradePriceBox,
   SwapContentsWrapper,
+  TradePriceBox,
 } from "~/pages/swap/src/feature/swap-contents/style";
 import GasfeeInformation from "~/pages/swap/src/feature/gasfee-information";
 
 const SwapContents = () => {
   const [sellToken, setSellToken] = useState<Tokens | null>(Tokens.ETH);
   const [buyToken, setBuyToken] = useState<Tokens | null>(null);
-  const [sellAmount, setSellAmount] = useState("0");
-  const [buyAmount, setBuyAmount] = useState("0");
+  const [sellAmount, setSellAmount] = useState("");
+  const [buyAmount, setBuyAmount] = useState("");
   const [isRateReversed, setIsRateReversed] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const isAllSelected =
-    sellToken !== null &&
-    buyToken !== null &&
-    sellAmount >= "0" &&
-    buyAmount >= "0";
+    sellToken &&
+    sellAmount &&
+    parseFloat(sellAmount) >= 0.00001 &&
+    buyToken &&
+    buyAmount &&
+    parseFloat(buyAmount) >= 0.00001;
 
   // 토큰 교환
   const handleChange = () => {
@@ -48,7 +50,7 @@ const SwapContents = () => {
   ) => {
     if (buyToken && sellToken) {
       const sellRate = exchangeRates[sellToken][buyToken];
-      return parseFloat(sellAmount) * sellRate || 0;
+      return parseFloat(sellAmount) * sellRate;
     }
     return 0;
   };
@@ -91,7 +93,7 @@ const SwapContents = () => {
         buyToken,
         sellAmount,
         sellToken,
-      ).toFixed();
+      ).toFixed(6);
       if (newBuyAmount !== buyAmount) {
         setBuyAmount(newBuyAmount);
       }
@@ -105,7 +107,7 @@ const SwapContents = () => {
         sellToken,
         buyAmount,
         buyToken,
-      ).toFixed();
+      ).toFixed(6);
       if (newSellAmount !== sellAmount) {
         setSellAmount(newSellAmount);
       }
