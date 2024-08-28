@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 
 import { TokenList, tokenRates, Tokens } from "~/types/tokens";
 import SelectTokenModal from "src/pages/swap/src/feature/select-token-modal";
@@ -19,21 +19,32 @@ interface InputCounterProps {
   title?: string;
   selectedToken: Tokens | null;
   onTokenChange: (token: Tokens) => void;
-  amount: number;
-  onAmountChange: (amount: number) => void;
+  amount: string;
+  onAmountChange: (amount: string) => void;
 }
 
 const InputCounter = ({
   title = "sell",
   selectedToken,
   onTokenChange,
-  amount = 0,
+  amount = "0",
   onAmountChange,
 }: InputCounterProps) => {
   const { openModal, closeModal } = useModal();
   const [totalCurrency, setTotalCurrency] = useState("0");
   // 총합 USD 노출 조건
-  const totalUSD = amount > 0 && !!selectedToken;
+  const totalUSD = parseFloat(amount) > 0 && !!selectedToken;
+
+  // 숫자, 소수점만 입력 가능 및 값 업데이트
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    let updatedValue = e.target.value;
+
+    const regex = /^[0-9]*\.?[0-9]{0,3}$/;
+
+    if (regex.test(updatedValue)) {
+      onAmountChange(updatedValue);
+    }
+  };
 
   // 선택된 토큰에 따른 계산
   const calcCurrency = () => {
@@ -42,7 +53,7 @@ const InputCounter = ({
       return "0";
     }
     const sellRate = tokenRates[selectedToken];
-    const calcTotalCurrency = sellRate * amount ?? 0;
+    const calcTotalCurrency = sellRate * parseFloat(amount) ?? "";
 
     // 특정 임계점 이후 단위 변환
     if (calcTotalCurrency >= 1e12) {
@@ -94,7 +105,7 @@ const InputCounter = ({
           minLength={1}
           maxLength={79}
           value={amount}
-          onChange={(e) => onAmountChange(+e.target.value)}
+          onChange={handleInputChange}
         />
         {selectedTokenData ? (
           <SelectedTokenBox onClick={handleSelectToken}>

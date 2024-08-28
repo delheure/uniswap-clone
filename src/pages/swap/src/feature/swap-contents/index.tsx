@@ -22,15 +22,15 @@ import GasfeeInformation from "~/pages/swap/src/feature/gasfee-information";
 const SwapContents = () => {
   const [sellToken, setSellToken] = useState<Tokens | null>(Tokens.ETH);
   const [buyToken, setBuyToken] = useState<Tokens | null>(null);
-  const [sellAmount, setSellAmount] = useState(0);
-  const [buyAmount, setBuyAmount] = useState(0);
+  const [sellAmount, setSellAmount] = useState("0");
+  const [buyAmount, setBuyAmount] = useState("0");
   const [isRateReversed, setIsRateReversed] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const isAllSelected =
     sellToken !== null &&
     buyToken !== null &&
-    sellAmount >= 0 &&
-    buyAmount >= 0;
+    sellAmount >= "0" &&
+    buyAmount >= "0";
 
   // 토큰 교환
   const handleChange = () => {
@@ -43,12 +43,12 @@ const SwapContents = () => {
   // sell 입력 값에 따른 buy 값 계산
   const calcSellAmount = (
     buyToken: Tokens | null,
-    sellAmount: number,
+    sellAmount: string,
     sellToken: Tokens | null,
   ) => {
     if (buyToken && sellToken) {
       const sellRate = exchangeRates[sellToken][buyToken];
-      return sellAmount * sellRate;
+      return parseFloat(sellAmount) * sellRate || 0;
     }
     return 0;
   };
@@ -56,12 +56,12 @@ const SwapContents = () => {
   // buy 입력 값에 따른 sell 값 계산
   const calcBuyAmount = (
     sellToken: Tokens | null,
-    buyAmount: number,
+    buyAmount: string,
     buyToken: Tokens | null,
   ) => {
     if (sellToken && buyToken) {
       const buyRate = exchangeRates[buyToken][sellToken];
-      return buyAmount * buyRate;
+      return parseFloat(buyAmount) * buyRate || 0;
     }
     return 0;
   };
@@ -86,8 +86,12 @@ const SwapContents = () => {
 
   // sellAmount 변경 시 buyAmount 계산
   useEffect(() => {
-    if (!!sellAmount) {
-      const newBuyAmount = calcSellAmount(buyToken, sellAmount, sellToken);
+    if (sellAmount && sellToken && buyToken) {
+      const newBuyAmount = calcSellAmount(
+        buyToken,
+        sellAmount,
+        sellToken,
+      ).toFixed();
       if (newBuyAmount !== buyAmount) {
         setBuyAmount(newBuyAmount);
       }
@@ -96,13 +100,17 @@ const SwapContents = () => {
 
   // buyAmount 변경 시 sellAmount 계산
   useEffect(() => {
-    if (!!buyAmount) {
-      const newSellAmount = calcBuyAmount(sellToken, buyAmount, buyToken);
+    if (buyAmount && sellToken && buyToken) {
+      const newSellAmount = calcBuyAmount(
+        sellToken,
+        buyAmount,
+        buyToken,
+      ).toFixed();
       if (newSellAmount !== sellAmount) {
         setSellAmount(newSellAmount);
       }
     }
-  }, [buyAmount, buyToken, sellToken]);
+  }, [buyAmount, sellToken, buyToken]);
 
   // 동일한 토큰 선택된 경우, 토큰 선택 버튼으로 변경
   useEffect(() => {
@@ -113,10 +121,10 @@ const SwapContents = () => {
 
   // buy, sell의 인풋, 토큰 모두 선택됐을 때, 수수료 계산 노출
   useEffect(() => {
-    if (sellToken && sellAmount && buyToken && buyAmount) {
-      setIsOpen(!isOpen);
+    if (isAllSelected) {
+      setIsOpen(true);
     } else {
-      setIsOpen(!isOpen);
+      setIsOpen(false);
     }
   }, [sellToken, sellAmount, buyToken, buyAmount]);
 
