@@ -3,6 +3,7 @@ import { HEADER_HEIGHT, ZIndex } from "~/styles/constants";
 
 export const HeaderWrapper = styled.header`
   position: sticky;
+  top: 0;
   z-index: ${ZIndex.STICKY};
   display: flex;
   justify-content: space-between;

@@ -13,7 +13,6 @@ import ArrowIcon from "~/assets/ico/icon_arrow.svg";
 import SearchInput from "~/common/header/search-input";
 import ConnectButton from "~/pages/swap/src/feature/connect-button";
 import LanguageIcon from "~/assets/ico/icon_language.svg";
-import WETHIcon from "~/assets/tokens/tokens_weth.png";
 
 const Header = () => {
   return (
@@ -33,9 +32,9 @@ const Header = () => {
         <IconBox>
           <SvgIcon icon={<LanguageIcon />} size={20} />
         </IconBox>
-        <IconBox>
-          <img src={WETHIcon.src} alt="Ethereum Nerwork" />
-        </IconBox>
+        {/*<IconBox>*/}
+        {/*  <img src={WETHIcon.src} alt="Ethereum Nerwork" />*/}
+        {/*</IconBox>*/}
         <ConnectButton type="header" text="connect" />
       </HeaderBox>
     </HeaderWrapper>

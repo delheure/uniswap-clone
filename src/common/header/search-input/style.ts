@@ -24,6 +24,7 @@ export const SearchInputWrapper = styled.div<{
   background-color: var(--gray-background);
   border: 1px solid rgba(34, 34, 34, 0.07);
   border-radius: 20px;
+  font-size: 16px;
 
   ${({ type }) => type && TypeSet[type]};
 `;
