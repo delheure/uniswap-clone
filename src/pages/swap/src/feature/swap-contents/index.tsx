@@ -18,6 +18,7 @@ import {
   TradePriceBox,
 } from "~/pages/swap/src/feature/swap-contents/style";
 import GasfeeInformation from "~/pages/swap/src/feature/gasfee-information";
+import BigNumber from "bignumber.js";
 
 const SwapContents = () => {
   const [sellToken, setSellToken] = useState<Tokens | null>(Tokens.ETH);
@@ -49,10 +50,10 @@ const SwapContents = () => {
     sellToken: Tokens | null,
   ) => {
     if (buyToken && sellToken) {
-      const sellRate = exchangeRates[sellToken][buyToken];
-      return parseFloat(sellAmount) * sellRate;
+      const sellRate = new BigNumber(exchangeRates[sellToken][buyToken]);
+      return new BigNumber(sellAmount).multipliedBy(sellRate).toFixed();
     }
-    return 0;
+    return "0";
   };
 
   // buy 입력 값에 따른 sell 값 계산
@@ -62,10 +63,10 @@ const SwapContents = () => {
     buyToken: Tokens | null,
   ) => {
     if (sellToken && buyToken) {
-      const buyRate = exchangeRates[buyToken][sellToken];
-      return parseFloat(buyAmount) * buyRate || 0;
+      const buyRate = new BigNumber(exchangeRates[buyToken][sellToken]);
+      return new BigNumber(buyAmount).multipliedBy(buyRate).toFixed();
     }
-    return 0;
+    return "0";
   };
 
   const handleRateToggle = () => {
@@ -89,11 +90,7 @@ const SwapContents = () => {
   // sellAmount 변경 시 buyAmount 계산
   useEffect(() => {
     if (sellAmount && sellToken && buyToken) {
-      const newBuyAmount = calcSellAmount(
-        buyToken,
-        sellAmount,
-        sellToken,
-      ).toFixed(6);
+      const newBuyAmount = calcSellAmount(buyToken, sellAmount, sellToken);
       if (newBuyAmount !== buyAmount) {
         setBuyAmount(newBuyAmount);
       }
@@ -103,11 +100,7 @@ const SwapContents = () => {
   // buyAmount 변경 시 sellAmount 계산
   useEffect(() => {
     if (buyAmount && sellToken && buyToken) {
-      const newSellAmount = calcBuyAmount(
-        sellToken,
-        buyAmount,
-        buyToken,
-      ).toFixed(6);
+      const newSellAmount = calcBuyAmount(sellToken, buyAmount, buyToken);
       if (newSellAmount !== sellAmount) {
         setSellAmount(newSellAmount);
       }

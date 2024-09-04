@@ -14,6 +14,7 @@ import {
   TitleUnit,
   TokensBox,
 } from "~/pages/swap/src/feature/input-counter/style";
+import BigNumber from "bignumber.js";
 
 interface InputCounterProps {
   title?: string;
@@ -54,18 +55,18 @@ const InputCounter = ({
     if (!selectedToken) {
       return "0";
     }
-    const sellRate = tokenRates[selectedToken];
-    const calcTotalCurrency = sellRate * parseFloat(amount) ?? "";
+    const sellRate = new BigNumber(tokenRates[selectedToken]);
+    const calcTotalCurrency = sellRate.multipliedBy(new BigNumber(amount));
 
     // 특정 임계점 이후 단위 변환
-    if (calcTotalCurrency >= 1e12) {
-      return `${(calcTotalCurrency / 1e12).toFixed(2)}T`;
-    } else if (calcTotalCurrency >= 1e9) {
-      return `${(calcTotalCurrency / 1e9).toFixed(2)}B`;
-    } else if (calcTotalCurrency >= 1e6) {
-      return `${(calcTotalCurrency / 1e6).toFixed(2)}M`;
+    if (calcTotalCurrency.isGreaterThanOrEqualTo(1e12)) {
+      return `${calcTotalCurrency.dividedBy(1e12).toFixed(2)}T`;
+    } else if (calcTotalCurrency.isGreaterThanOrEqualTo(1e9)) {
+      return `${calcTotalCurrency.dividedBy(1e9).toFixed(2)}B`;
+    } else if (calcTotalCurrency.isGreaterThanOrEqualTo(1e6)) {
+      return `${calcTotalCurrency.dividedBy(1e6).toFixed(2)}M`;
     } else {
-      return calcTotalCurrency.toLocaleString();
+      return calcTotalCurrency.toFixed(2).toLocaleString();
     }
   };
 
