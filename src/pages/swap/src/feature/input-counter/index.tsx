@@ -18,7 +18,7 @@ import BigNumber from "bignumber.js";
 
 interface InputCounterProps {
   title?: string;
-  selectedToken: Tokens | null;
+  selectedTokenName: Tokens | null;
   onTokenChange: (token: Tokens) => void;
   amount: string;
   onAmountChange: (amount: string) => void;
@@ -26,7 +26,7 @@ interface InputCounterProps {
 
 const InputCounter = ({
   title = "sell",
-  selectedToken,
+  selectedTokenName,
   onTokenChange,
   amount: initialAmount,
   onAmountChange,
@@ -35,7 +35,7 @@ const InputCounter = ({
   const [amount, setAmount] = useState(initialAmount);
   const [totalCurrency, setTotalCurrency] = useState("0");
   // 총합 USD 노출 조건
-  const totalUSD = parseFloat(amount) > 0 && !!selectedToken;
+  const totalUSD = parseFloat(amount) > 0 && !!selectedTokenName;
 
   // 숫자, 소수점만 입력 가능 및 값 업데이트
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -52,10 +52,10 @@ const InputCounter = ({
   // 선택된 토큰에 따른 계산
   const calcCurrency = () => {
     // 선택된 토큰이 없을 때 반환
-    if (!selectedToken) {
+    if (!selectedTokenName) {
       return "0";
     }
-    const sellRate = new BigNumber(tokenRates[selectedToken]);
+    const sellRate = new BigNumber(tokenRates[selectedTokenName]);
     const calcTotalCurrency = sellRate.multipliedBy(new BigNumber(amount));
 
     // 특정 임계점 이후 단위 변환
@@ -78,7 +78,7 @@ const InputCounter = ({
 
   // 선택된 토큰 정보
   const selectedTokenData = TokenList.find(
-    (token) => token.name === selectedToken,
+    (token) => token.name === selectedTokenName,
   );
 
   // 토큰 선택 모달
@@ -86,7 +86,7 @@ const InputCounter = ({
     openModal(
       <SelectTokenModal
         tokenList={TokenList}
-        selectedToken={selectedToken}
+        selectedTokenName={selectedTokenName}
         onTokenSelect={handleTokenSelect}
       />,
     );
@@ -97,7 +97,7 @@ const InputCounter = ({
     if (!!totalUSD) {
       setTotalCurrency(calcCurrency());
     }
-  }, [amount, selectedToken]);
+  }, [amount, selectedTokenName]);
 
   useEffect(() => {
     setAmount(initialAmount);
@@ -119,7 +119,7 @@ const InputCounter = ({
         {selectedTokenData ? (
           <SelectedTokenBox onClick={handleSelectToken}>
             <img src={selectedTokenData.icon} />
-            <span>{selectedToken}</span>
+            <span>{selectedTokenName}</span>
 
             <SvgIcon icon={<DropdownIcon />} size={12} />
           </SelectedTokenBox>

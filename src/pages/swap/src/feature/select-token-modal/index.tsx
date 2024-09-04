@@ -21,13 +21,13 @@ import WETHIcon from "~/assets/tokens/tokens_weth.png";
 
 interface SelectTokenModalProps {
   tokenList: { name: Tokens; icon: string }[];
-  selectedToken: Tokens | null;
+  selectedTokenName: Tokens | null;
   onTokenSelect: (token: Tokens) => void;
 }
 
 const SelectTokenModal = ({
   tokenList,
-  selectedToken,
+  selectedTokenName,
   onTokenSelect,
 }: SelectTokenModalProps) => {
   const { closeModal } = useModal();
@@ -62,7 +62,7 @@ const SelectTokenModal = ({
             <TokenItem
               key={item.name}
               onClick={() => handleTokenSelect(item.name)}
-              active={selectedToken === item.name}
+              active={selectedTokenName === item.name}
             >
               <img src={item.icon} alt={item.name} />
               {item.name}

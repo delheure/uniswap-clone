@@ -127,7 +127,7 @@ const SwapContents = () => {
     <SwapContentsWrapper>
       <InputCounter
         title="sell"
-        selectedToken={sellToken}
+        selectedTokenName={sellToken}
         onTokenChange={setSellToken}
         amount={sellAmount}
         onAmountChange={setSellAmount}
@@ -135,7 +135,7 @@ const SwapContents = () => {
       <CurrencyButton handleChange={handleChange} />
       <InputCounter
         title="buy"
-        selectedToken={buyToken}
+        selectedTokenName={buyToken}
         onTokenChange={setBuyToken}
         amount={buyAmount}
         onAmountChange={setBuyAmount}
